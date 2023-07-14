@@ -4,29 +4,42 @@ def solution(x, y):
     import numpy as np
     solution = ""
 
-
+    
     
     def getVerticleRowNum(thatRow):
-        print("The row detected is", thatRow)
-        #return thatRow + (thatRow - 1)
-        print(thatRow + (thatRow - 1))
+        #print("The row detected is", thatRow)
+        #print(thatRow + (thatRow - 1))
+        return (thatRow + (thatRow - 1))
+        
+    #Get the offset to add based on the row
+    def getRowOffset(Row):
+        print("Calculating offset for row", Row)
+        #Math goes here
+        #LAWL, the offset is the first row - smacks head ok, how to pull that out
+        if Row > 2:
+            Row = Row - 2 
+            print("The offset number to add should be",
+            (Row * (Row + 1))/2)
+        else:
+            print("Row too low no offset addition needed")
+
 
     getVerticleRowNum(y)
+    getRowOffset(y)
 
     laIndex = 1
-    vertRow = 19
+    vertRow = 1
     arrI = 1
     laArr = []
     #ok, sort of got this one going but it's only part 1
     while laIndex < 20:
-        laArr.append(int((laIndex * (laIndex + vertRow))/2)+36)
+        laArr.append(int((laIndex * (laIndex + vertRow))/2))
         laIndex += 1
 
     print(laArr)
         
 
-
-
+solution(3, 10)
 
 
 # 46                                  row 19 (+36 needed)
@@ -52,5 +65,3 @@ def solution(x, y):
 
     #make sure we print out a string
     #print(str(x ** y))
-
-solution(3, 2)
