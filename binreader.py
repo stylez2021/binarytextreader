@@ -15,5 +15,15 @@ print("Welcome to BinReader, hope you enjoy your stay")
 targetFile = sys.argv[1]
 print("File to scan is", targetFile)
 
+#open up the file for use in python
 with open(targetFile, "r") as readFile:
-    print(readFile.read())
+    fileText = (readFile.read())
+    print(fileText)
+
+#now store the sets of binary numbers into a list
+#close but ... need to separated them by spaces how do I do that?
+textList = []
+for i in fileText:
+    textList.append(i)
+
+print(textList)
