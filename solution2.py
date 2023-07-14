@@ -13,15 +13,16 @@ def solution(x, y):
         
     #Get the offset to add based on the row
     def getRowOffset(Row):
-        print("Calculating offset for row", Row)
+        #print("Calculating offset for row", Row)
         #Math goes here
         #LAWL, the offset is the first row - smacks head ok, how to pull that out
         if Row > 2:
             Row = Row - 2 
-            print("The offset number to add should be",
-            (Row * (Row + 1))/2)
+            #print("The offset number to add should be",
+            return((Row * (Row + 1))/2)
         else:
             print("Row too low no offset addition needed")
+            return 0
 
 
     getVerticleRowNum(y)
@@ -37,9 +38,12 @@ def solution(x, y):
         laIndex += 1
 
     print(laArr)
+
+    #Ok let's strip it down to just the answer now, start with the 1st two rows
+    print((int((x * (x + getVerticleRowNum(y)))/2)+getRowOffset(y)))
         
 
-solution(3, 10)
+solution(3, 2)
 
 
 # 46                                  row 19 (+36 needed)
