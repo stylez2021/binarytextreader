@@ -2,6 +2,8 @@ def solution(xs):
     #my code here
     import numpy
     powerArray = []
+    powerArray2 = []
+
 
     print(xs)
     for num in xs:
@@ -11,22 +13,37 @@ def solution(xs):
 
     #print(powerArray)
 
+    powerArray.sort()
+    print("Sorted array:", powerArray)
+    #Taking the largest negative number and putting them in the new list
+    #Only do this if the lowest numbers are negative MAYBE?  Logic error?
+    if powerArray[0] < 0:
+        powerArray2.append(powerArray[0])
+    if powerArray[1] < 0:
+        powerArray2.append(powerArray[1])
+
+    for n in powerArray:
+        if n > 0:
+            powerArray2.append(n)
+    print("New array with lowest negative num thrown out", powerArray2)
+
     #times the numbers in the powerArray by themselfs and print the total?
     #The positive numbers seem to be passing, how do I deal with negatives?  Math is hard
     result = 1 
-    result2 = numpy.prod(powerArray)
-    for x in powerArray:
+    result2 = numpy.prod(powerArray2)
+    for x in powerArray2:
         result = result * x
     print(str(result))
-    print(str(result2))
+    #print(str(result2))
 
 # Input:
 # solution.solution([-2, -3, 4, -5])
 # Output:    60
 
-# solution([2, 0, 2, 2, 0]) Working
+solution([2, 0, 2, 2, 0])
+solution([2,-3,1,0,-5])
 solution([-2, -3, 4, -5])
-solution([-2, 1, -8])
+
 
 # You need to figure out which sets of panels in any given array you can take offline to repair while still maintaining the maximum amount
 # of power output per array, and to do THAT, you'll first need to figure out what the maximum output of each array actually is.
