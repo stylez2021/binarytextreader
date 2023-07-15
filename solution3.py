@@ -8,19 +8,39 @@ def solution(xs):
     print(xs)
     for num in xs:
         #print(num)
-        if num != 0:
-            powerArray.append(num)
+        #if num != 0:
+        powerArray.append(num)
 
     #print(powerArray)
+
 
     powerArray.sort()
     print("Sorted array:", powerArray)
     #Taking the largest negative number and putting them in the new list
     #Only do this if the lowest numbers are negative MAYBE?  Logic error?
-    if powerArray[0] < 0:
+    negNums = 0
+    posNums = 0
+    for n in powerArray:
+        if n < 0:
+            negNums += 1
+        elif n > 1:
+            posNums += 1
+    #print("Neg to minus",negNums - negNums % 2)
+    
+
+    #Lets assume we'll have arrays that have a lot of negatives, we'll want to keep all except the "lowest" value one
+    #if negNums > 1 or posNums > 1:
+    #print("Neg", negNums)
+    if negNums == 1:
         powerArray2.append(powerArray[0])
-    if powerArray[1] < 0:
+    elif negNums == 2:
+        powerArray2.append(powerArray[0])
         powerArray2.append(powerArray[1])
+    else:
+        x = 0
+        while x < negNums - negNums % 2:
+            powerArray2.append(powerArray[x])
+            x += 1
 
     for n in powerArray:
         if n > 0:
@@ -29,23 +49,30 @@ def solution(xs):
 
     #times the numbers in the powerArray by themselfs and print the total?
     #The positive numbers seem to be passing, how do I deal with negatives?  Math is hard
-    result = 1 
-    result2 = numpy.prod(powerArray2)
-    for x in powerArray2:
-        result = result * x
-    if result2 > 1000:
-        print(1000)
-    else:
+    #if powerArray2:
+    print("XS is", xs)
+    if xs[0] != 0:
+        result = 1 
+        result2 = numpy.prod(powerArray2)
+        for x in powerArray2:
+            result = result * x
         print(str(result))
-    #print(str(result2))
+        #print(str(result2))
+    else:
+        print("0")
 
 # Input:
 # solution.solution([-2, -3, 4, -5])
 # Output:    60
 
-solution([2, 0, 2, 2, 0])
-solution([2,-3,1,0,-5])
-solution([-2, -3, 4, -5])
+#solution([2, 0, 2, 2, 0])
+#solution([2,-3,1,0,-5])
+#solution([-2, -3, 4, -5])
+solution([1])
+solution([0])
+solution([-1])
+#solution([-3000])
+
 
 
 # You need to figure out which sets of panels in any given array you can take offline to repair while still maintaining the maximum amount

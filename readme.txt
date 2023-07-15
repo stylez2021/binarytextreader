@@ -1,25 +1,33 @@
-"""
-    Keeping track of Commander Lambda's many bunny workers is starting to get tricky. You've been tasked with writing a program to match bunny worker IDs to cell locations
-    The LAMBCHOP doomsday device takes up much of the interior of Commander Lambda's space station, and as a result the work areas have an unusual layout.
-    They are stacked in a triangular shape, and the bunny workers are given numerical IDs starting from the corner
-    as follows:
-    | 7
-    | 4 8
-    | 2 5 9
-    | 1 3 6 10
-    
-    Each cell can be represented as points (x, y), with x being the distance from the vertical wall, and y being the height from the ground.
-    For example, the bunny worker at (1, 1) has ID 1, the bunny worker at (3, 2) has ID 9, and the bunny worker at (2,3) has ID 8. This pattern of numbering continues
-    indefinitely (Commander Lambda has been adding a LOT of workers).
-    
-    Write a function solution(x, y) which returns the worker ID of the bunny at location (x, y). Each value of x and y will be at least 1 and no greater than 100,000.
-    Since the worker ID can be very large, return your solution as a string representation of the number.
-"""
+Commander Lambda has tasked you to help the scientists increase fuel creation efficiency by predicting the end state of a given ore sample.
+You have carefully studied the different structures that the ore can take and which transitions it undergoes. It appears that, while random,
+the probability of each structure transforming is fixed. That is, each time the ore is in 1 state, it has the same probabilities of entering
+the next state (which might be the same state).  You have recorded the observed transitions in a matrix. The others in the lab have hypothesized
+more exotic forms that the ore can become, but you haven't seen all of them.
 
-Input:
-solution.solution(5, 10)
-Output:    96
+Write a function solution(m) that takes an array of array of
+nonnegative ints representing how many times that state has gone to the next state and return an array of ints for each terminal state giving the exact
+probabilities of each terminal state, represented as the numerator for each state, then the denominator for all of them at the end and in simplest form.
+The matrix is at most 10 by 10. It is guaranteed that no matter which state the ore is in, there is a path from that state to a terminal state.
+That is, the processing will always eventually end in a stable state. The ore starts in state 0. The denominator will fit within a signed 32-bit integer during
+the calculation, as long as the fraction is simplified regularly.
 
-Input:
-solution.solution(3, 2)
-Output:    9
+For example, consider the matrix m:
+[
+[0,1,0,0,0,1],  # s0, the initial state, goes to s1 and s5 with equal probability
+[4,0,0,3,2,0],  # s1 can become s0, s3, or s4, but with different probabilities
+[0,0,0,0,0,0],  # s2 is terminal, and unreachable (never observed in practice)
+[0,0,0,0,0,0],  # s3 is terminal  [0,0,0,0,0,0],  # s4 is terminal
+[0,0,0,0,0,0],  # s5 is terminal
+]
+So, we can consider different paths to terminal states, such as:
+s0 -> s1 -> s3
+s0 -> s1 -> s0 -> s1 -> s0 -> s1 -> s4
+s0 -> s1 -> s0 -> s5
+Tracing the probabilities of each, we find that
+s2 has probability 0
+s3 has probability 3/14
+s4 has probability 1/7
+s5 has probability 9/14
+So, putting that together, and making a common denominator, gives an answer in the form of
+[s2.numerator, s3.numerator, s4.numerator, s5.numerator, denominator] which is
+[0, 3, 2, 9, 14].
