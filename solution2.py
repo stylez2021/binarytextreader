@@ -21,7 +21,7 @@ def solution(x, y):
             #print("The offset number to add should be",
             return((Row * (Row + 1))/2)
         else:
-            print("Row too low no offset addition needed")
+            #print("Row too low no offset addition needed")
             return 0
 
 
@@ -37,13 +37,13 @@ def solution(x, y):
         laArr.append(int((laIndex * (laIndex + vertRow))/2))
         laIndex += 1
 
-    print(laArr)
+    #print(laArr)
 
     #Ok let's strip it down to just the answer now, start with the 1st two rows
-    print((int((x * (x + getVerticleRowNum(y)))/2)+getRowOffset(y)))
+    print((int(((x * (x + getVerticleRowNum(y)))/2)+getRowOffset(y))))
         
 
-solution(3, 2)
+#solution(5, 10)
 
 
 # 46                                  row 19 (+36 needed)
