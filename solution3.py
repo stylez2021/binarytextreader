@@ -33,7 +33,10 @@ def solution(xs):
     result2 = numpy.prod(powerArray2)
     for x in powerArray2:
         result = result * x
-    print(str(result))
+    if result2 > 1000:
+        print(1000)
+    else:
+        print(str(result))
     #print(str(result2))
 
 # Input:
